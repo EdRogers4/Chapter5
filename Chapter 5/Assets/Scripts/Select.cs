@@ -233,7 +233,7 @@ public class Select : MonoBehaviour
 
         if (currentSelection > 0)
         {
-            stateUI = 3;
+            stateUI = 4;
             isNewUIState = true;
         }
     }
