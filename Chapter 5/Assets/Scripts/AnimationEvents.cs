@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AnimationEvents : MonoBehaviour
 {
     [SerializeField] private Select scriptSelect;
+    [SerializeField] private Animator animator;
 
     public void StopRotation()
     {
@@ -15,5 +16,6 @@ public class AnimationEvents : MonoBehaviour
     public void ToggleIntroOff()
     {
         scriptSelect.isIntro = false;
+        animator.SetBool("isShow", false);
     }
 }

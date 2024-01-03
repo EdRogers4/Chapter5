@@ -11,6 +11,7 @@ public class Select : MonoBehaviour
     [SerializeField] private Transform cameraMovePosition;
     [SerializeField] private AudioClip[] music;
     [SerializeField] private Animator[] animatorCircle;
+    [SerializeField] private Animator animatorIntro;
     [SerializeField] private Light[] directionalLight;
     [SerializeField] private Sprite[] spriteTitle;
     [SerializeField] private Image imageTitle;
@@ -21,12 +22,15 @@ public class Select : MonoBehaviour
     [SerializeField] private string[] stringKeeper;
     [SerializeField] private string[] stringStone;
     [SerializeField] private string[] stringMystery;
-    [SerializeField] private float speedCameraMove;
-    [SerializeField] private float speedScrollText;
+    [SerializeField] private float speedCameraMoveIn;
+    [SerializeField] private float speedCameraMoveOut;
+    [SerializeField] private float speedScrollKeeper;
+    [SerializeField] private float speedScrollMystery;
     private RaycastHit hit;
     private AudioSource audioSource;
     private float distanceToTarget;
     private float rangeFromTarget = 0.01f;
+    private float speedCameraMove;
     private int currentSelection;
     private int previousSelection;
     private int currentLocation;
@@ -46,9 +50,16 @@ public class Select : MonoBehaviour
     {
         audioSource = gameObject.GetComponent<AudioSource>();
         timeMusicIntro = audioSource.clip.length;
-        isIntro = true;
         isLightsBright = true;
+        //ShowMysteryIntro();
+    }
+
+    public void ShowMysteryIntro()
+    {
+        isIntro = true;
+        animatorIntro.SetBool("isShow", true);
         PlayIntroMusic();
+
     }
 
     void Update()
@@ -211,9 +222,9 @@ public class Select : MonoBehaviour
                         currentSelection = 7;
                         SetSelection(6);
                         break;
-
                 }
 
+                speedCameraMove = speedCameraMoveIn;
             }
         }
     }
@@ -223,7 +234,7 @@ public class Select : MonoBehaviour
         for (int i = 0; i < stringKeeper[currentSelection - 1].Length; i++)
         {
             textKeeper.text += stringKeeper[currentSelection - 1][i];
-            yield return new WaitForSeconds(speedScrollText);
+            yield return new WaitForSeconds(speedScrollKeeper);
 
             if (currentSelection == 0)
             {
@@ -243,7 +254,7 @@ public class Select : MonoBehaviour
         for (int i = 0; i < stringStone[currentSelection - 1].Length; i++)
         {
             textStone.text += stringStone[currentSelection - 1][i];
-            yield return new WaitForSeconds(speedScrollText);
+            yield return new WaitForSeconds(speedScrollMystery);
 
             if (currentSelection == 0)
             {
@@ -263,7 +274,7 @@ public class Select : MonoBehaviour
         for (int i = 0; i < stringMystery[currentSelection - 1].Length; i++)
         {
             textMystery.text += stringMystery[currentSelection - 1][i];
-            yield return new WaitForSeconds(speedScrollText);
+            yield return new WaitForSeconds(speedScrollMystery);
 
             if (currentSelection == 0)
             {
@@ -294,6 +305,7 @@ public class Select : MonoBehaviour
             textStone.text = "";
             textMystery.text = "";
             stateUI = 5;
+            speedCameraMove = speedCameraMoveOut;
         }
     }
 

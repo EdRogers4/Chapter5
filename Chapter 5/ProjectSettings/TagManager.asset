@@ -11,6 +11,13 @@ TagManager:
   - Target5
   - Target6
   - Target7
+  - Role1
+  - Role2
+  - Role3
+  - Role4
+  - Role5
+  - Role6
+  - Role7
   layers:
   - Default
   - TransparentFX
@@ -25,7 +32,7 @@ TagManager:
   - Target4
   - Target5
   - Target6
-  - 
+  - Icons
   - 
   - 
   - 
