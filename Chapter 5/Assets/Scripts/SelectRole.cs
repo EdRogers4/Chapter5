@@ -13,6 +13,7 @@ public class SelectRole : MonoBehaviour
     [SerializeField] private string[] stringRoleVirtues1;
     [SerializeField] private string[] stringRoleVirtues3;
     [SerializeField] private string stringRoleVirtues2;
+    [SerializeField] private GameObject canvasWeapons;
     [SerializeField] private TextMeshProUGUI textRoleName;
     [SerializeField] private TextMeshProUGUI textRoleVirtues1;
     [SerializeField] private TextMeshProUGUI textRoleVirtues2;
@@ -23,6 +24,7 @@ public class SelectRole : MonoBehaviour
     [SerializeField] private float[] positionRoleVirtues1;
     [SerializeField] private float[] positionRoleVirtues2;
     [SerializeField] private float[] positionRoleVirtues3;
+    [SerializeField] private Button[] buttonRole;
     [SerializeField] private Button buttonNext;
     [SerializeField] private Sprite[] spriteBanner;
     [SerializeField] private Image imageBanner;
@@ -113,6 +115,14 @@ public class SelectRole : MonoBehaviour
         audioSource.Play();
     }
 
+    public void ToggleRoleButtons(bool value)
+    {
+        for (int i = 0; i < buttonRole.Length; i++)
+        {
+            buttonRole[i].interactable = value;
+        }
+    }
+
     public void ToggleNextButtonOn()
     {
         buttonNext.interactable = true;
@@ -121,6 +131,7 @@ public class SelectRole : MonoBehaviour
 
     public void NextPage()
     {
+        canvasWeapons.SetActive(true);
         animatorNext.SetBool("isShow", false);
         buttonNext.interactable = false;
         animatorBanner.SetBool("isHide", true);

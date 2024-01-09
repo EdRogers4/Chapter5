@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class AnimationEvents : MonoBehaviour
 {
+    [SerializeField] private AppManager scriptAppManager;
     [SerializeField] private Select scriptSelect;
     [SerializeField] private SelectRole scriptSelectRole;
     [SerializeField] private Animator animator;
@@ -23,5 +24,20 @@ public class AnimationEvents : MonoBehaviour
     public void NextButton()
     {
         scriptSelectRole.ToggleNextButtonOn();
+    }
+
+    public void ToggleRoleButtonsOn()
+    {
+        scriptSelectRole.ToggleRoleButtons(true);
+    }
+
+    public void ToggleRoleButtonsOff()
+    {
+        scriptSelectRole.ToggleRoleButtons(false);
+    }
+
+    public void ShowWeapons()
+    {
+        scriptAppManager.ShowWeapons();
     }
 }
