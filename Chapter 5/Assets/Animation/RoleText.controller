@@ -51,7 +51,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.75
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -207,7 +207,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.0035067797
   m_TransitionOffset: 0
   m_ExitTime: 0.75
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -222,6 +222,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: isShow
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isHide
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1817485438194397098}
@@ -244,7 +247,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RoleText_HideWhite
+  m_Name: RoleText_Hide
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -258,7 +261,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e693ce17567c69a459f0077541fa0970, type: 2}
+  m_Motion: {fileID: 7400000, guid: 36c51905202cd8e4e8af4e11681c310f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -368,19 +371,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isWhite
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isHide
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -483,6 +486,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: isShow
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: isHide
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1817485438194397098}
   m_Solo: 0
@@ -560,7 +566,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RoleText_Hide
+  m_Name: RoleText_HideWhite
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -574,7 +580,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 36c51905202cd8e4e8af4e11681c310f, type: 2}
+  m_Motion: {fileID: 7400000, guid: e693ce17567c69a459f0077541fa0970, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

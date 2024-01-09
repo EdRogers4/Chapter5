@@ -17,6 +17,12 @@ public class SelectRole : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textRoleVirtues1;
     [SerializeField] private TextMeshProUGUI textRoleVirtues2;
     [SerializeField] private TextMeshProUGUI textRoleVirtues3;
+    [SerializeField] private RectTransform transformRoleVirtues1;
+    [SerializeField] private RectTransform transformRoleVirtues2;
+    [SerializeField] private RectTransform transformRoleVirtues3;
+    [SerializeField] private float[] positionRoleVirtues1;
+    [SerializeField] private float[] positionRoleVirtues2;
+    [SerializeField] private float[] positionRoleVirtues3;
     [SerializeField] private Button buttonNext;
     [SerializeField] private Sprite[] spriteBanner;
     [SerializeField] private Image imageBanner;
@@ -28,6 +34,7 @@ public class SelectRole : MonoBehaviour
     [SerializeField] private Animator animatorBanner;
     [SerializeField] private Animator animatorRoleText;
     [SerializeField] private Animator animatorNext;
+    [SerializeField] private Animator animatorRoleButtons;
     [SerializeField] private List<int> listRolesWithTextColorWhite;
     private int selectedPrevious;
     private int selectedCurrent;
@@ -40,20 +47,24 @@ public class SelectRole : MonoBehaviour
         {
             positionRoleOrigin[i] = transformRole[i].position;
         }
+
+        ShowButtons();
     }
 
-    void Update()
+    private void ShowButtons()
     {
+        animatorRoleButtons.SetBool("isShow", true);
     }
 
     public void Select(int index)
     {
         animatorNext.SetBool("isShow", false);
-        buttonNext.gameObject.SetActive(false);
+        buttonNext.interactable = false;
         selectedPrevious = selectedCurrent;
         isSelected[index] = true;
         selectedCurrent = index;
         imageBanner.sprite = spriteBanner[index];
+        animatorBanner.SetBool("isHide", false);
         animatorBanner.SetBool("isStretch", false);
         animatorRoleText.SetBool("isShow", false);
         audioSource.Stop();
@@ -65,6 +76,10 @@ public class SelectRole : MonoBehaviour
         {
             isSelected[selectedPrevious] = false;
         }
+
+        transformRoleVirtues1.anchoredPosition = new Vector2(positionRoleVirtues1[selectedCurrent], transformRoleVirtues1.anchoredPosition.y);
+        transformRoleVirtues2.anchoredPosition = new Vector2(positionRoleVirtues2[selectedCurrent], transformRoleVirtues2.anchoredPosition.y);
+        transformRoleVirtues3.anchoredPosition = new Vector2(positionRoleVirtues3[selectedCurrent], transformRoleVirtues3.anchoredPosition.y);
 
         StartCoroutine(StretchBanner());
     }
@@ -100,13 +115,18 @@ public class SelectRole : MonoBehaviour
 
     public void ToggleNextButtonOn()
     {
-        buttonNext.gameObject.SetActive(true);
+        buttonNext.interactable = true;
         animatorNext.SetBool("isShow", true);
     }
 
     public void NextPage()
     {
+        animatorNext.SetBool("isShow", false);
+        buttonNext.interactable = false;
+        animatorBanner.SetBool("isHide", true);
+        animatorBanner.SetBool("isStretch", false);
         animatorRoleText.SetBool("isHide", true);
         animatorRoleText.SetBool("isShow", false);
+        animatorRoleButtons.SetBool("isShow", false);
     }
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 13e6af4fb7cd2194d95f9ad8d55210f6
+guid: b39e5501fd309ad4c868d359dd3f7632
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - PunkRocker Stamp Demo
+  - A Love of Thunder
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class AppManager : MonoBehaviour
 {
+    [SerializeField] private SelectRole scriptSelectRole;
     [SerializeField] private int currentPage;
     public void Next()
     {
-        currentPage += 1;
+        switch (currentPage)
+        {
+            case 0:
+                scriptSelectRole.NextPage();
+                break;
+        }
+
+        //currentPage += 1;
     }
 
     public void Quit()
