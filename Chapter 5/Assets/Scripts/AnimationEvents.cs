@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class AnimationEvents : MonoBehaviour
 {
     [SerializeField] private Select scriptSelect;
+    [SerializeField] private SelectRole scriptSelectRole;
     [SerializeField] private Animator animator;
 
     public void StopRotation()
@@ -17,5 +18,10 @@ public class AnimationEvents : MonoBehaviour
     {
         scriptSelect.isIntro = false;
         animator.SetBool("isShow", false);
+    }
+
+    public void NextButton()
+    {
+        scriptSelectRole.ToggleNextButtonOn();
     }
 }
