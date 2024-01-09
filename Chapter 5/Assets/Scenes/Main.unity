@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 42456583}
   - component: {fileID: 42456587}
   - component: {fileID: 42456588}
+  - component: {fileID: 42456589}
   m_Layer: 5
   m_Name: Canvas Weapons
   m_TagString: Untagged
@@ -312,6 +313,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 88af82558b98bcb4695650eedb435111, type: 3}
   spriteSide: []
   spriteMelee: []
+--- !u!114 &42456589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42456582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a403fc610904b47b18066877ffff33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptAppManager: {fileID: 939319860}
+  scriptSelect: {fileID: 0}
+  scriptSelectRole: {fileID: 1308420711}
+  animator: {fileID: 0}
 --- !u!1 &46610824
 GameObject:
   m_ObjectHideFlags: 0
@@ -20587,10 +20604,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407ff5c5384bc6940a393581e7f7616b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPage: 0
   scriptSelectRole: {fileID: 1308420711}
   scriptSelectWeapons: {fileID: 42456588}
-  currentPage: 0
+  animatorNext: {fileID: 541970501}
   animatorBack: {fileID: 1466507215}
+  buttonNext: {fileID: 541970498}
   buttonBack: {fileID: 1466507211}
 --- !u!4 &939319861
 Transform:
@@ -24137,7 +24156,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 939319860}
         m_TargetAssemblyTypeName: AppManager, Assembly-CSharp
-        m_MethodName: Next
+        m_MethodName: Back
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

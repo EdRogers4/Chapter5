@@ -40,4 +40,12 @@ public class AnimationEvents : MonoBehaviour
     {
         scriptAppManager.ShowWeapons();
     }
+
+    public void OnHideWeapons()
+    {
+        if (scriptAppManager.currentPage == 0)
+        {
+            scriptSelectRole.ShowButtons();
+        }
+    }
 }

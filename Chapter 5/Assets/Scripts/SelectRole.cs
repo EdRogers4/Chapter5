@@ -53,9 +53,10 @@ public class SelectRole : MonoBehaviour
         ShowButtons();
     }
 
-    private void ShowButtons()
+    public void ShowButtons()
     {
         animatorRoleButtons.SetBool("isShow", true);
+        canvasWeapons.SetActive(false);
     }
 
     public void Select(int index)
