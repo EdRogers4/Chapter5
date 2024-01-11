@@ -6,6 +6,7 @@ using TMPro;
 
 public class Select : MonoBehaviour
 {
+    [SerializeField] private AppManager scriptAppManager;
     [SerializeField] private Rotation[] scriptRotation;
     [SerializeField] private Transform[] transformTarget;
     [SerializeField] private Transform cameraMovePosition;
@@ -58,11 +59,9 @@ public class Select : MonoBehaviour
     {
         isIntro = true;
         animatorIntro.SetBool("isShow", true);
-        PlayIntroMusic();
-
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (currentSelection != currentLocation)
         {
@@ -88,26 +87,35 @@ public class Select : MonoBehaviour
                     buttonBack.enabled = true;
                     stateUI = 1;
                     imageTitle.sprite = spriteTitle[currentSelection - 1];
+                    scriptAppManager.ToggleNextButtonOn();
+                    textKeeper.text = stringKeeper[currentSelection - 1];
                 }
             }
         }
 
         if (stateUI == 1 && imageTitle.color.a < 1.0f && currentSelection > 0)
         {
-            colorAlpha += 0.01f;
+            colorAlpha += 0.001f;
             Color newColor = new Color(1.0f, 1.0f, 1.0f, colorAlpha);
             imageTitle.color = newColor;
         }
         else if (stateUI == 1 && imageTitle.color.a >= 1.0f && currentSelection > 0)
         {
             stateUI = 2;
+            colorAlpha = 0f;
             isNewUIState = true;
         }
         
-        if (stateUI == 2 && isNewUIState && currentSelection > 0)
+        if (stateUI == 2 && isNewUIState && currentSelection > 0 && textKeeper.color.a < 1.0f)
         {
-            isNewUIState = false;
-            StartCoroutine(ScrollTextKeeper());
+            colorAlpha += 0.001f;
+            Color newColor = new Color(1.0f, 1.0f, 1.0f, colorAlpha);
+            textKeeper.color = newColor;
+        }
+        else if (stateUI == 2 && currentSelection > 0 && textKeeper.color.a >= 1.0f)
+        {
+            stateUI = 3;
+            isNewUIState = true;
         }
 
         if (stateUI == 3 && isNewUIState && currentSelection > 0)
@@ -126,6 +134,7 @@ public class Select : MonoBehaviour
         {
             Color newColor = new Color(1.0f, 1.0f, 1.0f, 0f);
             imageTitle.color = newColor;
+            textKeeper.color = newColor;
         }
         else if (stateUI == 5 && imageTitle.color.a <= 0)
         {
@@ -229,26 +238,6 @@ public class Select : MonoBehaviour
         }
     }
 
-    private IEnumerator ScrollTextKeeper()
-    {
-        for (int i = 0; i < stringKeeper[currentSelection - 1].Length; i++)
-        {
-            textKeeper.text += stringKeeper[currentSelection - 1][i];
-            yield return new WaitForSeconds(speedScrollKeeper);
-
-            if (currentSelection == 0)
-            {
-                break;
-            }
-        }
-
-        if (currentSelection > 0)
-        {
-            stateUI = 4;
-            isNewUIState = true;
-        }
-    }
-
     private IEnumerator ScrollTextStone()
     {
         for (int i = 0; i < stringStone[currentSelection - 1].Length; i++)
@@ -298,7 +287,6 @@ public class Select : MonoBehaviour
             isMusicFadeOut = true;
             isMoving = true;
             buttonBack.enabled = false;
-            StopCoroutine(ScrollTextKeeper());
             StopCoroutine(ScrollTextStone());
             StopCoroutine(ScrollTextMystery());
             textKeeper.text = "";
@@ -320,7 +308,7 @@ public class Select : MonoBehaviour
         isMoving = true;
     }
 
-    private void PlayIntroMusic()
+    public void PlayIntroMusic()
     {
         if (isIntro)
         {
