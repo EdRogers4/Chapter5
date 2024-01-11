@@ -48,4 +48,14 @@ public class AnimationEvents : MonoBehaviour
             scriptSelectRole.ShowButtons();
         }
     }
+
+    public void DisableRolesCanvas()
+    {
+        scriptAppManager.DisableCanvas(0);
+    }
+
+    public void DisableWeaponsCanvas()
+    {
+        scriptAppManager.DisableCanvas(1);
+    }
 }

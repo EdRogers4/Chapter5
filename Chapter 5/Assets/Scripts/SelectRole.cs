@@ -7,17 +7,19 @@ using TMPro;
 public class SelectRole : MonoBehaviour
 {
     public bool isSelectRole;
+    [SerializeField] private AppManager scriptAppManager;
     [SerializeField] private bool isIntro;
     [SerializeField] private bool[] isSelected;
     [SerializeField] private string[] stringRoleName;
     [SerializeField] private string[] stringRoleVirtues1;
     [SerializeField] private string[] stringRoleVirtues3;
+    [SerializeField] private string[] stringRoleDescription;
     [SerializeField] private string stringRoleVirtues2;
-    [SerializeField] private GameObject canvasWeapons;
     [SerializeField] private TextMeshProUGUI textRoleName;
     [SerializeField] private TextMeshProUGUI textRoleVirtues1;
     [SerializeField] private TextMeshProUGUI textRoleVirtues2;
     [SerializeField] private TextMeshProUGUI textRoleVirtues3;
+    [SerializeField] private TextMeshProUGUI textRoleDescription;
     [SerializeField] private RectTransform transformRoleVirtues1;
     [SerializeField] private RectTransform transformRoleVirtues2;
     [SerializeField] private RectTransform transformRoleVirtues3;
@@ -37,6 +39,7 @@ public class SelectRole : MonoBehaviour
     [SerializeField] private Animator animatorRoleText;
     [SerializeField] private Animator animatorNext;
     [SerializeField] private Animator animatorRoleButtons;
+    [SerializeField] private Animator animatorChooseRole;
     [SerializeField] private List<int> listRolesWithTextColorWhite;
     private int selectedPrevious;
     private int selectedCurrent;
@@ -56,7 +59,6 @@ public class SelectRole : MonoBehaviour
     public void ShowButtons()
     {
         animatorRoleButtons.SetBool("isShow", true);
-        canvasWeapons.SetActive(false);
     }
 
     public void Select(int index)
@@ -70,10 +72,13 @@ public class SelectRole : MonoBehaviour
         animatorBanner.SetBool("isHide", false);
         animatorBanner.SetBool("isStretch", false);
         animatorRoleText.SetBool("isShow", false);
+        animatorChooseRole.SetBool("isShow", false);
         audioSource.Stop();
+        textRoleName.text = "";
         textRoleVirtues1.text = "";
         textRoleVirtues2.text = "";
         textRoleVirtues3.text = "";
+        textRoleDescription.text = "";
 
         if (selectedPrevious != selectedCurrent)
         {
@@ -98,6 +103,7 @@ public class SelectRole : MonoBehaviour
         textRoleVirtues1.text = stringRoleVirtues1[selectedCurrent];
         textRoleVirtues2.text = stringRoleVirtues2;
         textRoleVirtues3.text = stringRoleVirtues3[selectedCurrent];
+        textRoleDescription.text = stringRoleDescription[selectedCurrent];
         animatorRoleText.SetBool("isShow", true);
 
         if (listRolesWithTextColorWhite.Contains(selectedCurrent))
@@ -122,6 +128,11 @@ public class SelectRole : MonoBehaviour
         {
             buttonRole[i].interactable = value;
         }
+
+        if (value)
+        {
+            animatorChooseRole.SetBool("isShow", true);
+        }
     }
 
     public void ToggleNextButtonOn()
@@ -132,7 +143,6 @@ public class SelectRole : MonoBehaviour
 
     public void NextPage()
     {
-        canvasWeapons.SetActive(true);
         animatorNext.SetBool("isShow", false);
         buttonNext.interactable = false;
         animatorBanner.SetBool("isHide", true);
@@ -140,5 +150,6 @@ public class SelectRole : MonoBehaviour
         animatorRoleText.SetBool("isHide", true);
         animatorRoleText.SetBool("isShow", false);
         animatorRoleButtons.SetBool("isShow", false);
+        scriptAppManager.role = selectedCurrent;
     }
 }
