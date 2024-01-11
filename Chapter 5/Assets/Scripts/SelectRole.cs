@@ -105,7 +105,11 @@ public class SelectRole : MonoBehaviour
         textRoleVirtues3.text = stringRoleVirtues3[selectedCurrent];
         textRoleDescription.text = stringRoleDescription[selectedCurrent];
         animatorRoleText.SetBool("isShow", true);
+        AssignTextColor();
+    }
 
+    private void AssignTextColor()
+    {
         if (listRolesWithTextColorWhite.Contains(selectedCurrent))
         {
             animatorRoleText.SetBool("isWhite", true);
@@ -135,12 +139,6 @@ public class SelectRole : MonoBehaviour
         }
     }
 
-    public void ToggleNextButtonOn()
-    {
-        buttonNext.interactable = true;
-        animatorNext.SetBool("isShow", true);
-    }
-
     public void NextPage()
     {
         animatorNext.SetBool("isShow", false);
@@ -150,6 +148,7 @@ public class SelectRole : MonoBehaviour
         animatorRoleText.SetBool("isHide", true);
         animatorRoleText.SetBool("isShow", false);
         animatorRoleButtons.SetBool("isShow", false);
+        AssignTextColor();
         scriptAppManager.role = selectedCurrent;
     }
 }

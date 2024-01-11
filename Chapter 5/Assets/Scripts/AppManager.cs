@@ -25,6 +25,9 @@ public class AppManager : MonoBehaviour
             case 0:
                 scriptSelectRole.NextPage();
                 break;
+            case 1:
+                scriptSelectWeapons.HideWeapons();
+                break;
         }
 
         currentPage += 1;
@@ -47,6 +50,12 @@ public class AppManager : MonoBehaviour
         currentPage -= 1;
     }
 
+    public void ToggleNextButtonOn()
+    {
+        buttonNext.interactable = true;
+        animatorNext.SetBool("isShow", true);
+    }
+
     public void ShowWeapons()
     {
         screenCanvas[1].SetActive(true);
@@ -58,6 +67,11 @@ public class AppManager : MonoBehaviour
     public void DisableCanvas(int index)
     {
         screenCanvas[index].SetActive(false);
+    }
+
+    public void EnableCanvas(int index)
+    {
+        screenCanvas[index].SetActive(true);
     }
 
     public void Quit()

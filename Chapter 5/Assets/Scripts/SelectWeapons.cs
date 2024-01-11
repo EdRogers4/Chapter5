@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SelectWeapons : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class SelectWeapons : MonoBehaviour
     [SerializeField] private Sprite[] spriteSide;
     [SerializeField] private Sprite[] spriteMelee;
     [SerializeField] private Sprite[] spriteBorder;
+    [SerializeField] private TextMeshProUGUI textNameMain;
+    [SerializeField] private TextMeshProUGUI textNameSide;
+    [SerializeField] private TextMeshProUGUI textNameMelee;
+    [SerializeField] private string[] stringNameMain;
+    [SerializeField] private string[] stringNameSide;
+    [SerializeField] private string[] stringNameMelee;
 
     public void ShowWeapons()
     {
@@ -37,15 +44,18 @@ public class SelectWeapons : MonoBehaviour
     public void EquipMain(int index)
     {
         slotMain.sprite = spriteMain[index];
+        textNameMain.text = stringNameMain[index];
     }
 
     public void EquipSide(int index)
     {
         slotSide.sprite = spriteSide[index];
+        textNameSide.text = stringNameSide[index];
     }
 
     public void EquipMelee(int index)
     {
         slotMelee.sprite = spriteMelee[index];
+        textNameMelee.text = stringNameMelee[index];
     }
 }

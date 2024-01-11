@@ -23,7 +23,7 @@ public class AnimationEvents : MonoBehaviour
 
     public void NextButton()
     {
-        scriptSelectRole.ToggleNextButtonOn();
+        scriptAppManager.ToggleNextButtonOn();
     }
 
     public void ToggleRoleButtonsOn()
@@ -46,6 +46,10 @@ public class AnimationEvents : MonoBehaviour
         if (scriptAppManager.currentPage == 0)
         {
             scriptSelectRole.ShowButtons();
+        }
+        else if (scriptAppManager.currentPage == 2)
+        {
+            scriptAppManager.EnableCanvas(2);
         }
     }
 
